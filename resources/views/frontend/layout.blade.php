@@ -154,6 +154,7 @@
 
     <script data-cfasync="false" src="{{ asset('/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery-2.1.3.min.js') }}"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" ></script> --}}
     <script src="{{ asset('assets/js/jquery.shuffle.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages-switcher.js') }}"></script>
@@ -167,5 +168,7 @@
     <script src="{{ asset('assets/js/jquery.googlemap.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="{{ asset('assets/preview/lmpixels-demo-panel.js') }}"></script>
+
+    @stack('frontend_js')
   </body>
 </html>

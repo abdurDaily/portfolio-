@@ -296,115 +296,118 @@
 
     <!-- Resume Subpage -->
     <section class="pt-page" data-id="resume">
-        <div class="container"><div class="section-inner custom-page-content">
-            <div class="section-title-block second-style">
-                <h2 class="section-title">Resume</h2>
-                {{-- <h5 class="section-description">7 Years of Experience</h5> --}}
-            </div>
+        <div class="container">
+            <div class="section-inner custom-page-content">
+                <div class="section-title-block second-style">
+                    <h2 class="section-title">Resume</h2>
+                    {{-- <h5 class="section-description">7 Years of Experience</h5> --}}
+                </div>
 
-            <div class="section-content ">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-8">
-                        <div class="col-inner bs-30">
-                            <div class="block-title">
-                                <h3>Education</h3>
-                            </div>
-
-                            <div class="timeline timeline-second-style bs-30 clearfix">
-                                
-                                @forelse ($educations as $education)
-
-                                <div class="timeline-item clearfix">
-                                    <div class="left-part">
-                                        <h5 class="item-period">{{ $education->year }}</h5>
-                                        <span class="item-company">{{ $education->institute }}</span>
-                                    </div>
-                                    <div class="divider"></div>
-                                    <div class="right-part">
-                                        <h4 class="item-title">{{ $education->title }}</h4>
-                                        <p>{{ $education->description }}</p>
-                                    </div>
+                <div class="section-content ">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-8">
+                            <div class="col-inner bs-30">
+                                <div class="block-title">
+                                    <h3>Education</h3>
                                 </div>
-                                                                    
+
+                                <div class="timeline timeline-second-style bs-30 clearfix">
+
+                                    @forelse ($educations as $education)
+                                        <div class="timeline-item clearfix">
+                                            <div class="left-part">
+                                                <h5 class="item-period">{{ $education->year }}</h5>
+                                                <span class="item-company">{{ $education->institute }}</span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <div class="right-part">
+                                                <h4 class="item-title">{{ $education->title }}</h4>
+                                                <p>{{ $education->description }}</p>
+                                            </div>
+                                        </div>
+
+                                    @empty
+                                        <div class="timeline-item clearfix">
+                                            <span>No Educational Data Found!</span>
+                                        </div>
+                                    @endforelse
+                                </div>
+
+                                <div class="block-title">
+                                    <h3>Experience<span></span></h3>
+                                </div>
+
+
+                                @forelse ($experiences as $experience)
+                                    <div class="timeline timeline-second-style clearfix">
+                                        <div class="timeline-item clearfix">
+                                            <div class="left-part">
+                                                <h5 class="item-period">{{ $experience->year }}</h5>
+                                                <span class="item-company">{{ $experience->institute }}</span>
+                                            </div>
+                                            <div class="divider"></div>
+                                            <div class="right-part">
+                                                <h4 class="item-title">{{ $experience->title }}</h4>
+                                                <p>{{ $experience->description }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @empty
-                                <div class="timeline-item clearfix">
-                                    <span>No Educational Data Found!</span>
-                                </div>
+                                    <div class="timeline timeline-second-style clearfix">
+                                        <span>No Experience Data Found</span>
+                                    </div>
                                 @endforelse
+
                             </div>
+                        </div>
 
-                            <div class="block-title">
-                                <h3>Experience<span></span></h3>
-                            </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <div class="col-inner">
 
-
-                            @forelse ($experiences as $experience)
-                            <div class="timeline timeline-second-style clearfix">
-                                <div class="timeline-item clearfix">
-                                    <div class="left-part">
-                                        <h5 class="item-period">{{ $experience->year }}</h5>
-                                        <span class="item-company">{{ $experience->institute }}</span>
-                                    </div>
-                                    <div class="divider"></div>
-                                    <div class="right-part">
-                                        <h4 class="item-title">{{ $experience->title }}</h4>
-                                        <p>{{ $experience->description }}</p>
-                                    </div>
+                                <div class="block-title">
+                                    <h3>Design Skills<span></span></h3>
                                 </div>
-                            </div>
-                            @empty
-                            <div class="timeline timeline-second-style clearfix">
-                              <span>No Experience Data Found</span>
-                            </div>
-                            @endforelse
 
+
+
+
+                                @forelse ($skills as $skill)
+                                    <div class="skills-info skills-second-style">
+                                        <!-- Skill 1 -->
+                                        <div class="clearfix">
+                                            <h4>{{ $skill->title }}</h4>
+                                            <div class="skill-value">{{ $skill->skill_range }}%</div>
+                                        </div>
+                                        <div class="progress skill-container" role="progressbar"
+                                            aria-label="Warning example" aria-valuenow="75" aria-valuemin="0"
+                                            aria-valuemax="100">
+                                            <div class="skill-percentage progress-bar text-bg-warning"
+                                                style="width: {{ $skill->skill_range }}%"></div>
+                                        </div>
+                                        <!-- /Skill 1 -->
+                                    </div>
+
+
+                                @empty
+                                    <div class="skills-info skills-second-style">
+                                        <span>No Skills Found!</span>
+                                    </div>
+                                @endforelse
+
+                            </div>
                         </div>
                     </div>
 
-                    <div class="col-xs-12 col-sm-4">
-                        <div class="col-inner">
-
-                            <div class="block-title">
-                                <h3>Design Skills<span></span></h3>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="col-inner ts-30">
+                                <a href="#" target="_blank" class="btn btn-primary">Download CV</a>
                             </div>
-
-                            
-
-
-                            @forelse ($skills as $skill)
-                            
-                            <div class="skills-info skills-second-style">
-                                <!-- Skill 1 -->
-                                <div class="clearfix">
-                                    <h4>{{ $skill->title }}</h4>
-                                    <div class="skill-value">{{ $skill->skill_range }}%</div>
-                                </div>
-                                <div class="progress skill-container" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
-                                  <div class="skill-percentage progress-bar text-bg-warning" style="width: {{ $skill->skill_range }}%"></div>
-                                </div>
-                                <!-- /Skill 1 -->
-                            </div>
-
-                                
-                            @empty
-                            <div class="skills-info skills-second-style">
-                                <span>No Skills Found!</span>
-                            </div> 
-                            @endforelse
-                           
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12">
-                        <div class="col-inner ts-30">
-                            <a href="#" target="_blank" class="btn btn-primary">Download CV</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div></div>
+        </div>
     </section>
     <!-- End of Resume Subpage -->
 
@@ -772,8 +775,11 @@
                             <h3>How Can I Help You?</h3>
                         </div>
 
-                        <form id="contact_form" class="contact-form" action="contact_form/contact_form.php"
-                            method="post">
+                        {{-- <form id="contact_form" class="contact-form" action="contact_form/contact_form.php"
+                            method="post"> --}}
+
+                        <form class="contact-form" action="{{ route('backend.contact.store') }}" method="post">
+                            @csrf
 
                             <div class="messages"></div>
 
@@ -814,9 +820,13 @@
                                     </div>
                                 </div>
 
-                                <div class="g-recaptcha" data-sitekey="6LdqmCAUAAAAAMMNEZvn6g4W5e0or2sZmAVpxVqI"></div>
+                                {{-- <div class="g-recaptcha" data-sitekey="6LdqmCAUAAAAAMMNEZvn6g4W5e0or2sZmAVpxVqI"></div> --}}
 
-                                <input type="submit" class="button btn-send" value="Send message">
+                                <div class="alert alert-success alert-message" style="display: none;" role="alert"></div>
+
+
+                                <button type="submit" class="button btn-send">Send message</button>
+                                {{-- <input type="submit" class="button btn-send" value="Send message"> --}}
                             </div>
                         </form>
                     </div>
@@ -825,4 +835,42 @@
         </div>
     </section>
     <!-- End Contact Subpage -->
+    @push('frontend_js')
+    <script>
+        $(function(){
+            $('.contact-form').on('submit', function(e){
+                e.preventDefault();
+                let formData = $(this).serialize();
+             
+                $.ajax({
+                    type: 'POST',
+                    url: `{{ route('backend.contact.store') }}`,
+                    data: formData,
+                    success: function(res){
+                        // Set the alert message
+                        $('.alert-message').html(res.success);
+                        
+                        // Show the alert
+                        $('.alert-message').show();
+
+
+                        $('.contact-form')[0].reset();
+                        
+                        // Optionally, hide the alert after a few seconds
+                        setTimeout(function() {
+                            $('.alert-message').fadeOut();
+                        }, 2000); // 2000 milliseconds = 5 seconds
+                    },
+                    error: function(xhr) {
+                        // Handle error response if needed
+                        $('.alert-message').html('An error occurred. Please try again.').removeClass('alert-success').addClass('alert-danger').show();
+                    }
+                });
+            });
+        });
+    </script>
+    @endpush
+
+
+
 @endsection

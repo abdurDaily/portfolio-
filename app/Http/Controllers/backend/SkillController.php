@@ -27,6 +27,7 @@ class SkillController extends Controller
         $skillStore->title = $request->title;
         $skillStore->description = $request->description;
         $skillStore->type = $request->type;
+        $skillStore->skill_range = $request->skill_range;
         $skillStore->save();
         return back();
         alert()->success('Title','Lorem Lorem Lorem');

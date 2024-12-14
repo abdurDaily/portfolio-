@@ -7,14 +7,19 @@
 
                 <div class="row">
 
-                    <div class="col-xl-6">
+                    <div class="col-xl-4">
                         <label for="year">Year</label>
                         <input name="year" type="text" id="year" placeholder="year" class="form-control py-3"> <br>
                     </div>
 
-                    <div class="col-xl-6">
+                    <div class="col-xl-4">
                         <label for="institute">Institute Name</label>
                         <input name="institute" type="text" id="institute" placeholder="institute name" class="form-control py-3"> <br>
+                    </div>
+
+                    <div class="col-xl-4">
+                        <label for="skill_range">Skill Range</label>
+                        <input name="skill_range" type="number" id="skill_range" placeholder="skill range" class="form-control py-3"> <br>
                     </div>
 
                     <div class="col-12">
@@ -31,6 +36,8 @@
                                 <select required name="type" id="type" class="py-3 form-control" required>
                                     <option selected disabled>select type</option>
                                     <option value="education">Education</option>
+                                    <option value="Experience">Experience</option>
+                                    <option value="Skill">Skill</option>
                                 </select>
                             </div>
                             

@@ -3,13 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-    <title>Kerge - Resume / CV / vCard Template</title>
+    <title>Abdur Daily</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="Kerge - Resume / CV / vCard Template" />
     <meta name="keywords" content="vcard, resposnive, retina, resume, jquery, css3, bootstrap, Material CV, portfolio" />
     <meta name="author" content="lmpixels" />
     <link rel="shortcut icon" href="favicon.ico">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/css/animations.css') }}" type="text/css">
@@ -109,14 +110,13 @@
         <!-- /Arrows Nav -->
 
         <!-- Main Content -->
-        <div id="main" class="site-main">
+        <div id="main" class="site-main" >
           <!-- Page changer wrapper -->
-          <div class="pt-wrapper">
+          <div class="pt-wrapper ">
             <!-- Subpages -->
-            <div class="subpages container">
-
-              @yield('frontend_contains')
-
+            <div class="subpages ">
+              
+                @yield('frontend_contains')
               
             </div>
           </div>
@@ -152,7 +152,7 @@
       </div>
     </div>
 
-    <script data-cfasync="false" src="{{ asset('/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js') }}"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="{{ asset('assets/js/jquery-2.1.3.min.js') }}"></script>
     {{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" ></script> --}}
     <script src="{{ asset('assets/js/jquery.shuffle.min.js') }}"></script>

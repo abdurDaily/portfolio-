@@ -26,14 +26,9 @@
                                     </div>
                                     <!-- /Text rotation / Subtitle -->
                                     <h2 class="hp-main-title">Abdur Rahman</h2>
-                                    <p>Praesent sed aliquam arcu, non accumsan neque. In odio ante, vulputate ac magna vel,
-                                        pharetra lobortis quam. Duis enim tortor, egestas et felis id, lobortis malesuada magna.
-                                        Nunc sit amet sagittis nisi, eu semper nisl. Cras ut dictum nisl. Donec tincidunt eget
-                                        orci.</p>
-                                    <p>Aliquam mollis, leo nec commodo facilisis, turpis lorem dapibus erat, sed consectetur
-                                        nunc nulla ac elit. Suspendisse dictum id dui mollis auctor. Etiam id sapien neque. Cras
-                                        nec rhoncus sem. Mauris metus ligula, varius vel iaculis at, pulvinar tincidunt magna.
-                                    </p>
+                                    <p>I have years of experience building and creating reliable, user-friendly internet applications, My expertise spans JavaScript, jQuery, React.js, PHP, and Laravel, enabling me to create dynamic and scalable solutions that meet diverse client needs. Currently, I serve as a faculty member at the "Creative IT Chittagong" branch, where I mentor and train aspiring developers, blending academic instruction with real-world industry practices.</p>
+                                    <p>As an educator, I am committed to bridging the gap between theory and application, equipping students with industry-ready skills. Through continuous learning and innovation, I strive to stay ahead in web development trends and inspire growth in the tech community.</p>
+                                    
                                     <div class="hp-buttons">
                                         <a href="https://www.linkedin.com/in/abdurdaily/" target="_blank" class="btn btn-primary">Download CV</a>
                                     </div>

@@ -68,7 +68,7 @@
 							<div class="menu-title">Role Create</div>
 						</a>
 						<ul>
-							<li> <a href="app-emailbox.html"><i class='bx bx-radio-circle'></i>Email</a>
+							<li> <a href="{{ route('backend.skill.index') }}"><i class='bx bx-radio-circle'></i>Skill Add</a>
 							</li>
 							<li> <a href="app-chat-box.html"><i class='bx bx-radio-circle'></i>Chat Box</a>
 							</li>
@@ -467,7 +467,7 @@
 							<li>
 								<div class="dropdown-divider mb-0"></div>
 							</li>
-							<li><a class="dropdown-item d-flex align-items-center" href=""><i class="bx bx-log-out-circle"></i><span>Logout</span></a>
+							<li><a class="dropdown-item d-flex align-items-center" href="#"><i class="bx bx-log-out-circle"></i><span>Logout</span></a>
 							</li>
 						</ul>
 					</div>

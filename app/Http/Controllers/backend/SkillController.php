@@ -12,7 +12,7 @@ class SkillController extends Controller
 {
     //INDEX
     public function skillIndex() {
-       return view('backend.index');
+       return view('backend.skills.skill');
     }
 
     //STRORE SKILL'S

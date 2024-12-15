@@ -3,6 +3,7 @@
 use App\Http\Controllers\backend\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\SkillController;
+use App\Http\Middleware\Admin;
 
 //SKILL
 Route::prefix('skill')->name('skill.')->group(function(){

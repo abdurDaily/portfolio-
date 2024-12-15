@@ -675,9 +675,9 @@ blockquote {
   min-height: 100%;
 }
 
-.section-inner.start-page-full-width .inner-content .fill-block {
+/* .section-inner.start-page-full-width .inner-content .fill-block {
   background-image: url(../images/sp_photo.jpg);
-}
+} */
 .section-inner.start-page-full-width .inner-content .fill-block {
   position: relative;
   height: 100%;

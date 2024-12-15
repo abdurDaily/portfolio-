@@ -9,7 +9,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="inner-content">
-                                <div class="fill-block"></div>
+                                <div class="fill-block" style="background-image: url({{ asset('assets/images/images/abdurdaily.jpg') }})"></div>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6">
@@ -25,7 +25,7 @@
                                         </div>
                                     </div>
                                     <!-- /Text rotation / Subtitle -->
-                                    <h2 class="hp-main-title">Alex Smith</h2>
+                                    <h2 class="hp-main-title">Abdur Rahman</h2>
                                     <p>Praesent sed aliquam arcu, non accumsan neque. In odio ante, vulputate ac magna vel,
                                         pharetra lobortis quam. Duis enim tortor, egestas et felis id, lobortis malesuada magna.
                                         Nunc sit amet sagittis nisi, eu semper nisl. Cras ut dictum nisl. Donec tincidunt eget
@@ -35,7 +35,7 @@
                                         nec rhoncus sem. Mauris metus ligula, varius vel iaculis at, pulvinar tincidunt magna.
                                     </p>
                                     <div class="hp-buttons">
-                                        <a href="#" target="_blank" class="btn btn-primary">Download CV</a>
+                                        <a href="https://www.linkedin.com/in/abdurdaily/" target="_blank" class="btn btn-primary">Download CV</a>
                                     </div>
                                 </div>
                             </div>
@@ -580,7 +580,7 @@
                                                 <a href="#" title="View all posts in E-Commerce">E-Commerce</a>
                                             </div>
                                             <a href="blog-post-1.html">
-                                                <img src="{{ asset('assets/images/blog/blog_post_4.jpg') }}"
+                                                <img src="{{ asset('assets/images/blog/blog_post_3.jpg') }}"
                                                     class="size-blog-masonry-image-two-c"
                                                     alt="An Overview of E-Commerce Platforms" title="" />
                                                 <div class="mask"></div>

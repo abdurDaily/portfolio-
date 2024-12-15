@@ -37,7 +37,7 @@
         <header id="site_header" class="header mobile-menu-hide container">
           <div class="header-content clearfix">
             <div class="my-photo">
-              <img src="{{ asset('assets/images/photo.jpg') }}" alt="image">
+              <img src="{{ asset('assets/images/images/abdurdailyLogo.png') }}" alt="image">
             </div>
 
             <div class="site-title-block">
@@ -70,9 +70,9 @@
 
             <!-- Social Links -->
             <div class="social-links">
-              <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-              <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-              <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://www.facebook.com/abdurDaily" target="_blank"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://www.linkedin.com/in/abdurdaily/" target="_blank"><i class="fab fa-linkedin"></i></a>
+              <a href="https://github.com/abdurDaily" target="_blank"><i class="fab fa-twitter"></i></a>
             </div>
             <!-- / Social Links -->
 
@@ -90,7 +90,7 @@
           <div class="mobile-logo-container">
             <div class="mobile-header-image">
               <a href="#">
-                  <img src="{{ asset('assets/images/photo.jpg') }}" alt="image">
+                  <img src="{{ asset('assets/images/images/abdurdailyLogo.png') }}" alt="image">
               </a>
             </div>
             <div class="mobile-site-title"><a href="#">Abdur Daily</a></div>

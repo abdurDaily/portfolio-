@@ -70,7 +70,7 @@
 						<ul>
 							<li> <a href="{{ route('backend.skill.index') }}"><i class='bx bx-radio-circle'></i>Skill Add</a>
 							</li>
-							<li> <a href="app-chat-box.html"><i class='bx bx-radio-circle'></i>Chat Box</a>
+							<li> <a href="{{ route('backend.blog.index') }}"><i class='bx bx-radio-circle'></i>Create Blog</a>
 							</li>
 							<li> <a href="app-file-manager.html"><i class='bx bx-radio-circle'></i>File Manager</a>
 							</li>

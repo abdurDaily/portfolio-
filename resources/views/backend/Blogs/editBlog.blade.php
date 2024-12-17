@@ -36,7 +36,7 @@
         <div class="row">
             <div class="col-12">
                 <label for="title">Title <b class="text-danger">*</b> </label>
-                <input value="{{ old('blog_title') }}" type="text" name="blog_title" placeholder="Title" class="form-control p-4 mb-2">
+                <input value="{{ $blog->blog_title }}" type="text" name="blog_title" placeholder="Title" class="form-control p-4 mb-2">
                 @error('blog_title')
                 <b class="text-danger">{{ $message }}</b> <br>
                 @enderror

@@ -72,7 +72,7 @@
 							</li>
 							<li> <a href="{{ route('backend.blog.index') }}"><i class='bx bx-radio-circle'></i>Create Blog</a>
 							</li>
-							<li> <a href="app-file-manager.html"><i class='bx bx-radio-circle'></i>File Manager</a>
+							<li> <a href="{{ route('backend.category.index') }}"><i class='bx bx-radio-circle'></i>Category's</a>
 							</li>
 							<li> <a href="app-contact-list.html"><i class='bx bx-radio-circle'></i>Contatcs</a>
 							</li>

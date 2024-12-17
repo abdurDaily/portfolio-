@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -11,7 +12,8 @@ class BlogsController extends Controller
 {
     // INDEX
     public function blogIndex(){
-        return view('backend.Blogs.blogIndex');
+        $categories = Category::select('id','category_name')->get();
+        return view('backend.Blogs.blogIndex', compact('categories'));
     }
 
 
@@ -50,6 +52,22 @@ class BlogsController extends Controller
     
         // Redirect back with a success message (optional)
         return back()->with('success', 'Blog created successfully!');
+    }
+
+
+    // BLOG lIST 
+    public function blogList(){
+        $blogs = Blog::get();
+        return view('backend.Blogs.allBlogs', compact('blogs'));
+    }
+
+
+    // BLOG EDIT 
+    public function blogEdit($blog_slug){
+        $blog = Blog::where('blog_slug', $blog_slug)->first(); 
+        // dd($blog);
+        $categories = Category::get();
+        return view('backend.Blogs.editBlog',compact('blog','categories'));
     }
     
 }

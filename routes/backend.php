@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\backend\BlogsController;
+use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\ContactController;
 use App\Http\Controllers\backend\SkillController;
 use App\Http\Middleware\Admin;
@@ -24,6 +25,15 @@ Route::prefix('contact')->name('contact.')->group(function(){
 Route::prefix('blog')->name('blog.')->group(function(){
     Route::get('/blog-index', [BlogsController::class, 'blogIndex'])->name('index');
     Route::post('/blog-index', [BlogsController::class, 'storeBlog'])->name('store');
+    Route::get('/-list', [BlogsController::class, 'blogList'])->name('list');
+    Route::get('/-edit/{blog_slug}', [BlogsController::class, 'blogEdit'])->name('edit');
+});
+
+
+//CATEGORY'S
+Route::prefix('category')->name('category.')->group(function(){
+    Route::get('/category-index', [CategoryController::class, 'categoryIndex'])->name('index');
+    Route::post('/category-index', [CategoryController::class, 'categoryStore'])->name('store');
 });
 
 

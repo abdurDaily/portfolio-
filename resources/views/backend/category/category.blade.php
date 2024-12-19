@@ -60,6 +60,7 @@
                                 <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                 @endforeach
                             </select>
+                            
                             <button class="btn btn-primary w-100 p-3 mt-3">submit</button>
                         </form>
                     </div>
@@ -70,6 +71,7 @@
 </section>
 
 @push('backend_js')
+
 <script src="{{ asset('assets/js/select2.min.js') }}"></script>
 <script src="{{ asset('assets/js/sweetalert2@11.js') }}"></script>
 
@@ -102,12 +104,9 @@
             Swal.fire({
                 title: response.success,
                 icon: "success",
-                draggable: true
+                draggable: true,
+                timer:1500
             });
-            // Set a timeout to hide the success message after 3 seconds
-            setTimeout(function() {
-                $('.category_title_success').fadeOut(); // Fade out the message
-            }, 1000);
 
 
         },
@@ -119,9 +118,7 @@
                     text: xhr.responseJSON.message,
                     timer: 2000
                     });
-            setTimeout(function() {
-                
-            }, 3000);
+
 
         }
     });

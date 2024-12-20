@@ -26,7 +26,7 @@
 
 <div class="container">
 
-    <form id="blog" action="{{ route('backend.blog.store') }}" method="post" enctype="multipart/form-data">
+    <form id="blog"  enctype="multipart/form-data">
         @csrf
 
             <div class="d-flex justify-content-between mb-3 align-items-center">
@@ -45,9 +45,8 @@
                 <div class="col-12">
                     <label for="title">Title <b class="text-danger">*</b> </label>
                     <input value="{{ old('blog_title') }}" type="text" name="blog_title" placeholder="Title" class="form-control p-4 mb-2">
-                    @error('blog_title')
-                    <b class="text-danger">{{ $message }}</b> <br>
-                    @enderror
+                    <span class="title_error text-danger"></span>
+                    
                 </div>
 
 
@@ -77,12 +76,11 @@
                                     <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                 @endforeach
                             </select>
+                            <span class="title_error text-danger"></span>
 
 
 
-                            @error('blog_category')
-                            <b class="text-danger">{{ $message }}</b> <br>
-                            @enderror
+                            
                         </div>
                     </div>
 
@@ -91,10 +89,9 @@
 
                 <div class="col-12">
                     <label for="blog_details">Blog Details <b class="text-danger">*</b></label>
-                    <textarea name="blog_details" id="richEditor"></textarea>
-                    @error('blog_details')
-                    <b class="text-danger">{{ $message }}</b> <br>
-                    @enderror
+                    <textarea name="blog_details"  id="richEditor"></textarea>
+                   
+                    <span class="title_error text-danger"></span>
                 </div>
 
 
@@ -115,6 +112,8 @@
 <script>
 
     // ACTIVE BLOG'S
+    var editor1 = new RichTextEditor("#richEditor");
+
     $('#blog').on('submit', function(e){
          e.preventDefault();
          data = new FormData(this);
@@ -135,18 +134,27 @@
                 });
                 
                     $('#blog')[0].reset();
-                    $('#preview_image').attr('src', '');
-                    $('#blog select').prop('selectedIndex', 0); 
-                    $('#blog input[type="file"]').val('');
+                    $('#blog').find('#blog-category-select').val('').trigger('change');
+                    $('#blog').find('textarea').val('');
+                    editor.delete()
+
             },
             error: function(xhr){
-                console.log(xhr);
+                $('.title_error').html(xhr.responseJSON.message);  
+                const {blog_title, blog_details,blog_category}= xhr.responseJSON.errors
+                
+                console.log(blog_title[0], blog_details[0]);
+                
+                
+                $(`input[name="blog_title"] span`).next('span.text-danger').html(blog_title[0])
+                $(`select[name="blog_category"] span`).next('span.text-danger').html(blog_category[0])
+                $(`textarea[name="blog_details"] span`).next('span.text-danger').html(blog_details[0])
+                
             }
         })
     })
 
 
-    var editor1 = new RichTextEditor("#richEditor");
 
     
 

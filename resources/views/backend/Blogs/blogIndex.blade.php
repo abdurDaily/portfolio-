@@ -44,9 +44,8 @@
             <div class="row">
                 <div class="col-12">
                     <label for="title">Title <b class="text-danger">*</b> </label>
-                    <input value="{{ old('blog_title') }}" type="text" name="blog_title" placeholder="Title" class="form-control p-4 mb-2">
-                    <span class="title_error text-danger"></span>
-                    
+                    <input value="{{ old('blog_title') }}" type="text" name="blog_title" placeholder="Title" class="form-control p-4 mb-2"> 
+                    <span class="title_err text-danger"></span>
                 </div>
 
 
@@ -55,9 +54,7 @@
                         <div class="col-xl-5">
                             <label for="blog_preview_image">Preview image <b class="text-danger">*</b> </label>
                             <input name="blog_preview_image" type="file" class="form-control p-4" id="blog_preview_image">
-                            @error('blog_preview_image')
-                            <b class="text-danger">{{ $message }}</b> <br>
-                            @enderror
+                          
                         </div>
                         <div class="col-xl-2 text-center mt-2">
                             <img class="img-fluid preview_image" id="imagePreview" src="{{ asset('assets/images/placeholder.jpg') }}"
@@ -65,10 +62,7 @@
                         </div>
                         <div class="col-xl-5">
                             <label for="">Select Category <b class="text-danger">*</b></label>
-                            {{-- <select name="blog_category" id="" class="form-control p-4 mb-2 text-center">
-                                <option value="" selected disabled>----Select Category----</option>
-                                <option value="1">Web Development</option>
-                            </select> --}}
+
 
                             <select class="js-example-basic-multiple form-control p-4 mb-2 text-center"
                                 name="blog_category[]" multiple="multiple" id="blog-category-select">
@@ -76,8 +70,8 @@
                                     <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                 @endforeach
                             </select>
-                            <span class="title_error text-danger"></span>
-
+                            <span class="category_err text-danger"></span>
+                           
 
 
                             
@@ -90,8 +84,7 @@
                 <div class="col-12">
                     <label for="blog_details">Blog Details <b class="text-danger">*</b></label>
                     <textarea name="blog_details"  id="richEditor"></textarea>
-                   
-                    <span class="title_error text-danger"></span>
+                    <span class="details_err text-danger"></span>
                 </div>
 
 
@@ -115,45 +108,42 @@
     var editor1 = new RichTextEditor("#richEditor");
 
     $('#blog').on('submit', function(e){
-         e.preventDefault();
-         data = new FormData(this);
+    e.preventDefault();
+    var data = new FormData(this);
 
+    // Check the state of the checkbox and set the value
+    var isActive = $('#flexSwitchCheckDefault').is(':checked') ? 1 : 0;
+    data.append('active', isActive); // Append the active value to FormData
 
-        $.ajax({
-            type: 'POST',
-            url: `{{ route('backend.blog.store') }}`,
-            data: data,
-            processData: false,
-            contentType: false,
-            success: function(res){
-                Swal.fire({
-                    title: "Good job!",
-                    text: "Data Stored successfully!",
-                    icon: "success",
-                    timer:1500,
-                });
-                
-                    $('#blog')[0].reset();
-                    $('#blog').find('#blog-category-select').val('').trigger('change');
-                    $('#blog').find('textarea').val('');
-                    editor.delete()
+    $.ajax({
+        type: 'POST',
+        url: `{{ route('backend.blog.store') }}`,
+        data: data,
+        processData: false,
+        contentType: false,
+        success: function(res){
+            
 
-            },
-            error: function(xhr){
-                $('.title_error').html(xhr.responseJSON.message);  
-                const {blog_title, blog_details,blog_category}= xhr.responseJSON.errors
-                
-                console.log(blog_title[0], blog_details[0]);
-                
-                
-                $(`input[name="blog_title"] span`).next('span.text-danger').html(blog_title[0])
-                $(`select[name="blog_category"] span`).next('span.text-danger').html(blog_category[0])
-                $(`textarea[name="blog_details"] span`).next('span.text-danger').html(blog_details[0])
-                
-            }
-        })
-    })
-
+            Swal.fire({
+                title: "Good job!",
+                text: "Data Stored successfully!",
+                icon: "success",
+                timer:1500,
+            });
+            
+            $('#blog')[0].reset();
+            $('#blog').find('#blog-category-select').val('').trigger('change');
+            editor.delete();
+        },
+        error: function(xhr){
+            console.log(xhr);
+            
+            $('.title_err').html(xhr.responseJSON.errors.blog_title);
+            $('.category_err').html(xhr.responseJSON.errors.blog_category);
+            $('.details_err').html(xhr.responseJSON.errors.blog_details);
+        }
+    });
+});
 
 
     

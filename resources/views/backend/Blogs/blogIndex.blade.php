@@ -27,8 +27,8 @@
 
     <div class="container">
 
-    <form id="blog" action="{{ route('backend.blog.store') }}" method="post" enctype="multipart/form-data">
-        @csrf
+        <form id="blog" action="{{ route('backend.blog.store') }}" method="post" enctype="multipart/form-data">
+            @csrf
 
             <div class="d-flex justify-content-between mb-3 align-items-center">
                 <h4>Create a Blog</h4>
@@ -40,10 +40,9 @@
             <div class="row">
                 <div class="col-12">
                     <label for="title">Title <b class="text-danger">*</b> </label>
-                    <input value="{{ old('blog_title') }}" type="text" name="blog_title" placeholder="Title" class="form-control p-4 mb-2">
-                    @error('blog_title')
-                    <b class="text-danger">{{ $message }}</b> <br>
-                    @enderror
+                    <input value="{{ old('blog_title') }}" type="text" name="blog_title" placeholder="Title"
+                        class="form-control p-4 mb-2">
+                    <span class="title_error text-danger"></span>
                 </div>
 
 
@@ -51,9 +50,10 @@
                     <div class="row align-items-center d-flex">
                         <div class="col-xl-5">
                             <label for="blog_preview_image">Preview image <b class="text-danger">*</b> </label>
-                            <input name="blog_preview_image" type="file" class="form-control p-4" id="blog_preview_image">
+                            <input name="blog_preview_image" type="file" class="form-control p-4"
+                                id="blog_preview_image">
                             @error('blog_preview_image')
-                            <b class="text-danger">{{ $message }}</b> <br>
+                                <b class="text-danger">{{ $message }}</b> <br>
                             @enderror
                         </div>
                         <div class="col-xl-2 text-center mt-2">
@@ -62,7 +62,10 @@
                         </div>
                         <div class="col-xl-5">
                             <label for="">Select Category <b class="text-danger">*</b></label>
-
+                            {{-- <select name="blog_category" id="" class="form-control p-4 mb-2 text-center">
+                                <option value="" selected disabled>----Select Category----</option>
+                                <option value="1">Web Development</option>
+                            </select> --}}
 
                             <select class="js-example-basic-multiple form-control p-4 mb-2 text-center"
                                 name="blog_category[]" multiple="multiple" id="blog-category-select">
@@ -71,11 +74,7 @@
                                 @endforeach
                             </select>
 
-
-
-                            @error('blog_category')
-                            <b class="text-danger">{{ $message }}</b> <br>
-                            @enderror
+                            <span class="category_error text-danger"></span>
                         </div>
                     </div>
 
@@ -85,9 +84,7 @@
                 <div class="col-12">
                     <label for="blog_details">Blog Details <b class="text-danger">*</b></label>
                     <textarea name="blog_details" id="richEditor"></textarea>
-                    @error('blog_details')
-                    <b class="text-danger">{{ $message }}</b> <br>
-                    @enderror
+                    <span class="details_error text-danger"></span>
                 </div>
 
 
@@ -100,49 +97,55 @@
 
 
 
-@push('backend_js')
-<script src="{{ asset('assets/js/richEditor/rte.js') }}"></script>
-<script src="{{ asset('assets/js/richEditor/all_plugins.js') }}"></script>
-<script src="{{ asset('assets/js/sweetalert2@11.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script>
-
-    // ACTIVE BLOG'S
-    $('#blog').on('submit', function(e){
-         e.preventDefault();
-         data = new FormData(this);
-
-    // Check the state of the checkbox and set the value
-    var isActive = $('#flexSwitchCheckDefault').is(':checked') ? 1 : 0;
-    data.append('active', isActive); // Append the active value to FormData
-
-        $.ajax({
-            type: 'POST',
-            url: `{{ route('backend.blog.store') }}`,
-            data: data,
-            processData: false,
-            contentType: false,
-            success: function(res){
-                Swal.fire({
-                    title: "Good job!",
-                    text: "Data Stored successfully!",
-                    icon: "success",
-                    timer:1500,
-                });
-                
-                    $('#blog')[0].reset();
-                    $('#preview_image').attr('src', '');
-                    $('#blog select').prop('selectedIndex', 0); 
-                    $('#blog input[type="file"]').val('');
-            },
-            error: function(xhr){
-                console.log(xhr);
-            }
-        })
-    })
+    @push('backend_js')
+        <script src="{{ asset('assets/js/richEditor/rte.js') }}"></script>
+        <script src="{{ asset('assets/js/richEditor/all_plugins.js') }}"></script>
+        <script src="{{ asset('assets/js/sweetalert2@11.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script>
+            // ACTIVE BLOG'S
+            $('#blog').on('submit', function(e) {
+                e.preventDefault();
+                data = new FormData(this);
 
 
-    var editor1 = new RichTextEditor("#richEditor");
+                $.ajax({
+                    type: 'POST',
+                    url: `{{ route('backend.blog.store') }}`,
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    success: function(res) {
+                        Swal.fire({
+                            title: "Good job!",
+                            text: "Data Stored successfully!",
+                            icon: "success",
+                            timer: 1500,
+                        });
+
+                        window.location.href = `{{ route('backend.blog.list') }}`;
+                        // console.log(window.location.href);
+                        
+
+                        $('#blog')[0].reset();
+                        $('#preview_image').attr('src', '');
+                        $('#blog select').prop('selectedIndex', 0);
+                        $('#blog input[type="file"]').val('');
+
+                    },
+                    error: function(xhr) {
+                        $('.title_error').html(xhr.responseJSON.errors.blog_title)
+                        $('.details_error').html(xhr.responseJSON.errors.blog_details)
+                        $('.category_error').html(xhr.responseJSON.errors.blog_category)
+                    },
+
+                })
+            })
+
+
+            var editor1 = new RichTextEditor("#richEditor");
+            
+         
 
 
 

@@ -648,6 +648,7 @@
 	</div>
 	<!--end switcher-->
 	<!-- Bootstrap JS -->
+	
 	<script src="{{ asset('assets/backend/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/backend/js/bootstrap.bundle.min.js') }}"></script>
 	@stack('backend_js')

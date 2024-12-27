@@ -45,17 +45,18 @@ class BlogsController extends Controller
             $storeBlog->blog_preview_image = $path_image;
         }
 
-
         $storeBlog->save();
         return response()->json($request->all());
-        // return back();
     }
 
 
     // BLOG lIST 
     public function blogList()
     {
+
         $blogs = Blog::latest()->paginate(5);
+
+
         return view('backend.Blogs.allBlogs', compact('blogs'));
     }
 

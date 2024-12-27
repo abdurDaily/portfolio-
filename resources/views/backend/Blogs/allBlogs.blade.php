@@ -1,5 +1,28 @@
 @extends('backend.layout')
+
 @section('backend_contains')
+
+@push('backend_css')
+  <style>
+    #pagination{
+        padding: 5px;
+
+    }
+    #pagination a{
+        outline: 1px solid #777;
+        border: none;
+        margin: 0 5px;
+        text-decoration: none;
+        color: #000;
+    }
+    #pagination .active{
+        outline: 1px solid #3c2fed;
+        color: #000;
+        text-decoration: none;
+    }
+  </style>
+@endpush
+
     <section id="blogs">
         <div class="container table-responsive">
             <table class="table table-hover  table-striped">
@@ -19,15 +42,15 @@
                             <td valign="middle" align="center">{{ ++$key }}</td>
                             <td valign="middle" width="30%">{{ Str::limit($blog->blog_title, 50, '...') }}</td>
                             <td valign="middle" align="center">
-                                <img style="width:80px; height:80px; object-fit:cover; border-radius:50%;" src="{{ $blog->blog_preview_image }}" alt="">
+                                <img style="width:80px; height:80px; object-fit:cover; border-radius:50%;" src="{{ $blog->blog_preview_image ? $blog->blog_preview_image : asset('assets/images/placeholder.jpg') }}" alt="">
                             </td>
                             <td valign="middle" class="text-center">
                                 <a href="#" >
                                     <span>
                                         @if ($blog->status == 1 )
-                                        <iconify-icon icon="nrk:check-active" width="24" height="24"></iconify-icon>
+                                        <span class="text-success"><iconify-icon icon="nrk:check-active" width="24" height="24"></iconify-icon></span>
                                         @else
-                                        <iconify-icon icon="nrk:close-active" width="24" height="24"></iconify-icon>
+                                        <span class="text-danger"><iconify-icon icon="nrk:close-active" width="24" height="24"></iconify-icon></span>
                                         @endif
                                     </span>
                                 </a>
@@ -49,12 +72,55 @@
                         
                     @endforelse
                 </tbody>
+               
             </table>
+            <!-- Pagination Links -->
+        <div id="pagination" class="d-flex justify-content-center">
+            <!-- Pagination links will be generated here -->
+        </div>
         </div>
     </section>
 
     @push('backend_js')
     <script src="https://cdn.jsdelivr.net/npm/@iconify/iconify@3.1.1/dist/iconify.min.js"></script>
     <script src="{{ asset('assets/js/iconify-icon.min.js') }}"></script>
+    
+
+    <script>
+        $(document).ready(function() {
+            const totalPages = {{ $blogs->lastPage() }}; // Total number of pages
+            const currentPage = {{ $blogs->currentPage() }}; // Current page
+            const paginationContainer = $('#pagination');
+    
+            function renderPagination() {
+                paginationContainer.empty(); // Clear existing pagination
+    
+                // Previous button
+                if (currentPage > 1) {
+                    paginationContainer.append(`<a href="?page=${currentPage - 1}" class="btn btn-link">Previous</a>`);
+                }
+    
+                // Page numbers
+                for (let i = 1; i <= totalPages; i++) {
+                    if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+                        if (i === currentPage) {
+                            paginationContainer.append(`<span class="btn btn-link active">${i}</span>`);
+                        } else {
+                            paginationContainer.append(`<a href="?page=${i}" class="btn btn-link">${i}</a>`);
+                        }
+                    } else if (i === currentPage - 2 || i === currentPage + 2) {
+                        paginationContainer.append(`<span class="btn btn-link">...</span>`);
+                    }
+                }
+    
+                // Next button
+                if (currentPage < totalPages) {
+                    paginationContainer.append(`<a href="?page=${currentPage + 1}" class="btn btn-link">Next</a>`);
+                }
+            }
+    
+            renderPagination(); // Initial render
+        });
+    </script>
     @endpush
 @endsection

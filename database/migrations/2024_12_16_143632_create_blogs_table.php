@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('blog_slug');
             $table->json('blog_category');
             $table->longText('blog_details'); 
-            $table->string('blog_preview_image'); 
+            $table->string('blog_preview_image')->nullable(); 
             $table->boolean('status')->default(0); 
             $table->timestamps();
         });

@@ -11,14 +11,16 @@ use Illuminate\Support\Str;
 class BlogsController extends Controller
 {
     // INDEX
-    public function blogIndex(){
-        $categories = Category::select('id','category_name')->get();
+    public function blogIndex()
+    {
+        $categories = Category::select('id', 'category_name')->get();
         return view('backend.Blogs.blogIndex', compact('categories'));
     }
 
 
     //STORE BLOG'S
-    public function storeBlog(Request $request) { 
+    public function storeBlog(Request $request)
+    {
 
         $request->validate([
             'blog_title' => 'required',
@@ -35,34 +37,35 @@ class BlogsController extends Controller
         $storeBlog->blog_details = $request->blog_details;
 
 
-                if ($request->hasFile('blog_preview_image')) {
-                    $blog_preview_image = $request->blog_preview_image->extension();
-                    $blog_preview_image_name = 'blog-' . time() . '.' . $blog_preview_image;
-                    $store_image = $request->blog_preview_image->storeAs("blog", $blog_preview_image_name, 'public');
-                    $path_image = env('APP_URL') . 'storage/' . $store_image;
-                    $storeBlog->blog_preview_image = $path_image;
-                }
+        if ($request->hasFile('blog_preview_image')) {
+            $blog_preview_image = $request->blog_preview_image->extension();
+            $blog_preview_image_name = 'blog-' . time() . '.' . $blog_preview_image;
+            $store_image = $request->blog_preview_image->storeAs("blog", $blog_preview_image_name, 'public');
+            $path_image = env('APP_URL') . 'storage/' . $store_image;
+            $storeBlog->blog_preview_image = $path_image;
+        }
 
 
-                $storeBlog->save();
-                return back();
-                return response()->json($request->all());
+        $storeBlog->save();
+        return response()->json($request->all());
+        // return back();
     }
 
 
     // BLOG lIST 
-    public function blogList(){
-        $blogs = Blog::get();
+    public function blogList()
+    {
+        $blogs = Blog::latest()->paginate(5);
         return view('backend.Blogs.allBlogs', compact('blogs'));
     }
 
 
     // BLOG EDIT 
-    public function blogEdit($blog_slug){
-        $blog = Blog::where('blog_slug', $blog_slug)->first(); 
+    public function blogEdit($blog_slug)
+    {
+        $blog = Blog::where('blog_slug', $blog_slug)->first();
         // dd($blog);
         $categories = Category::get();
-        return view('backend.Blogs.editBlog',compact('blog','categories'));
+        return view('backend.Blogs.editBlog', compact('blog', 'categories'));
     }
-    
 }

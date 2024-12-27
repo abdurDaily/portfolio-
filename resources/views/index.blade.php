@@ -7,12 +7,12 @@
             <div class="section-inner start-page-full-width">
                 <div class="start-page-full-width">
                     <div class="row">
-                        <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="col-sm-12 col-md-6 col-lg-6 order-lg-2 ">
                             <div class="inner-content">
                                 <div class="fill-block" style="background-image: url({{ asset('assets/images/images/abdurdaily.jpg') }})"></div>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="col-sm-12 col-md-6 col-lg-6 order-lg-1">
                             <div class="inner-content">
                                 <div class="hp-text-block">
                                     <!-- Text rotation / Subtitle -->

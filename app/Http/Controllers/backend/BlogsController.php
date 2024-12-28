@@ -69,4 +69,14 @@ class BlogsController extends Controller
         $categories = Category::get();
         return view('backend.Blogs.editBlog', compact('blog', 'categories'));
     }
+
+
+    // STATUS 
+    public function status(Request $request) {
+        $blog = Blog::find($request->statusFind);
+        $blog->status = !$blog->status;
+        $blog->save();
+        return response()->json([ 'data' => $blog ]);
+    }
+    
 }

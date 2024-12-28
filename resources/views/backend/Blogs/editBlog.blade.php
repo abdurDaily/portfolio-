@@ -53,7 +53,7 @@
                         @enderror
                     </div>
                     <div class="col-xl-2 text-center mt-2">
-                        <img class="img-fluid" id="imagePreview" src="{{ asset('assets/images/placeholder.jpg') }}"
+                        <img class="img-fluid" id="imagePreview" src="{{ $blog->blog_preview_image ? $blog->blog_preview_image : asset('assets/images/placeholder.jpg') }}"
                             alt="Image Preview">
                     </div>
                     <div class="col-xl-5">
@@ -64,11 +64,15 @@
                         </select> --}}
 
                         <select class="js-example-basic-multiple form-control p-4 mb-2 text-center"
-                            name="blog_category[]" multiple="multiple" id="blog-category-select">
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-                            @endforeach
-                        </select>
+                        name="blog_category[]" multiple="multiple" id="blog-category-select">
+                    
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}" 
+                                @if($selectedCategories->contains('id', $category->id)) selected @endif>
+                                {{ $category->category_name }}
+                            </option>
+                        @endforeach
+                    </select>
 
 
 
@@ -83,7 +87,9 @@
 
             <div class="col-12">
                 <label for="blog_details">Blog Details <b class="text-danger">*</b></label>
-                <textarea name="blog_details" id="richEditor"></textarea>
+                <textarea name="blog_details" id="richEditor">
+                    {{ $blog->blog_details }}
+                </textarea>
                 @error('blog_details')
                 <b class="text-danger">{{ $message }}</b> <br>
                 @enderror

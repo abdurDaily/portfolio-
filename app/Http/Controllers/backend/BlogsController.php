@@ -64,10 +64,22 @@ class BlogsController extends Controller
     // BLOG EDIT 
     public function blogEdit($blog_slug)
     {
+        // Retrieve the blog post
         $blog = Blog::where('blog_slug', $blog_slug)->first();
-        // dd($blog);
+    
+        // Decode the blog_category JSON string into an array
+        $selectedCategoryIds = json_decode($blog->blog_category, true); // true for associative array
+    
+        // Fetch categories that match the selected IDs
+        $selectedCategories = Category::whereIn('id', $selectedCategoryIds)->get();
+
+        // dd($selectedCategories);
+    
+        // Fetch all categories for the dropdown
         $categories = Category::get();
-        return view('backend.Blogs.editBlog', compact('blog', 'categories'));
+    
+        // Pass the blog, selected categories, and all categories to the view
+        return view('backend.Blogs.editBlog', compact('blog', 'categories', 'selectedCategories'));
     }
 
 

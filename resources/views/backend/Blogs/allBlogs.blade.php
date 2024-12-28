@@ -73,7 +73,7 @@
                                             height="24"></iconify-icon>
                                     </span>
                                 </a>
-                                <a href="#">
+                                <a href="#" class="delete_blog" data-id="{{ $blog->id }}">
                                     <span class="text-danger">
                                         <iconify-icon icon="material-symbols:delete-outline-sharp" width="24"
                                             height="24">
@@ -190,6 +190,28 @@
                     });
                 });
 
+                // DELETE 
+               
+
+                $('.delete_blog').on('click', function(e){
+                    e.preventDefault();
+                    let id = $(this).attr('data-id');
+                    
+                    $.ajax({
+                        type: 'get',
+                        url: '{{ route('backend.blog.delete') }}',
+                        data: {
+                            id: id,
+                        },
+                        success:function(res){
+                            console.log(res);
+                            
+                        },
+                        error: function(xhr, status, error) {
+                            console.log(xhr.responseText);
+                        }
+                    })
+                })
             });
         </script>
     @endpush

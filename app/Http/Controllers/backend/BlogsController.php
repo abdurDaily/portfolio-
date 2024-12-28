@@ -83,6 +83,35 @@ class BlogsController extends Controller
     }
 
 
+    //BLOG UPDATE
+    public function blogUpdate(Request $request, $blog_slug){
+        $blog = Blog::where('blog_slug', $blog_slug)->first();
+        $blog->blog_title = $request->blog_title;
+        $blog->blog_slug = 'blog-' . Str::slug($request->blog_title) . '-' . time();
+        $blog->blog_category = json_encode($request->blog_category);
+        $blog->blog_details = $request->blog_details;
+
+        
+    if ($request->hasFile('blog_preview_image')) {
+        $blog_preview_image = $request->blog_preview_image->extension();
+        $blog_preview_image_name = 'blog-' . time() . '.' . $blog_preview_image;
+        $store_image = $request->blog_preview_image->storeAs("blog", $blog_preview_image_name, 'public');
+        $path_image = env('APP_URL') . 'storage/' . $store_image;
+        $blog->blog_preview_image = $path_image;
+    }
+        $blog->save();
+        return response()->json($request->all());
+    }
+
+
+    // DELETE 
+    public function blogDelete(Request $request, $id){
+        dd($request->all());
+        $blogDelete = Blog::where('id', $id)->delete();
+    }
+
+
+    
     // STATUS 
     public function status(Request $request) {
         $blog = Blog::find($request->statusFind);

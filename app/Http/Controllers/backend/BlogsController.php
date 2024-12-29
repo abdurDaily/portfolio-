@@ -105,9 +105,8 @@ class BlogsController extends Controller
 
 
     // DELETE 
-    public function blogDelete(Request $request, $id){
-        dd($request->all());
-        $blogDelete = Blog::where('id', $id)->delete();
+    public function blogDelete(Request $request){
+        Blog::where('id', $request->id)->delete();
     }
 
 

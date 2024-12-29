@@ -26,6 +26,12 @@
 
     <section id="blogs">
         <div class="container table-responsive">
+
+            <div class="d-flex justify-content-between mb-3 align-items-center">
+
+                <a href="{{ route('backend.blog.store') }}" class="btn btn-primary">Create a Blog</a>
+            </div>
+
             <table class="table table-hover  table-striped">
                 <thead>
                     <tr>
@@ -85,7 +91,7 @@
                     @empty
 
                         <tr>
-                            <td class="text-danger">No data found!</td>
+                            <td class="text-danger text-center py-5 " colspan="5">No data found!</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -190,28 +196,50 @@
                     });
                 });
 
-                // DELETE 
-               
 
-                $('.delete_blog').on('click', function(e){
+
+                //******************** DELETE ***************//
+
+                $('.delete_blog').on('click', function(e) {
                     e.preventDefault();
                     let id = $(this).attr('data-id');
-                    
-                    $.ajax({
-                        type: 'get',
-                        url: '{{ route('backend.blog.delete') }}',
-                        data: {
-                            id: id,
-                        },
-                        success:function(res){
-                            console.log(res);
-                            
-                        },
-                        error: function(xhr, status, error) {
-                            console.log(xhr.responseText);
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "this data will be permanently deleted!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, delete it!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                type: 'get',
+                                url: `{{ route('backend.blog.delete', '') }}/${id}`,
+                                data: {
+                                    id: id,
+                                },
+                                success: function(res) {
+                                    Swal.fire({
+                                        title: "Deleted!",
+                                        text: "Your file has been deleted.",
+                                        icon: "success"
+                                    }).then(() => {
+                                        location.reload();
+                                    });
+                                },
+                                error: function(xhr, status, error) {
+                                    console.log(xhr.responseText);
+                                    Swal.fire({
+                                        title: "Error!",
+                                        text: "There was an error deleting the file.",
+                                        icon: "error"
+                                    });
+                                }
+                            });
                         }
-                    })
-                })
+                    });
+                });
             });
         </script>
     @endpush

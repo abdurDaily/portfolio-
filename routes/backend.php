@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('skill')->name('skill.')->group(function(){
     Route::get('/skill-index', [SkillController::class, 'skillIndex'])->name('index');
     Route::post('/skill-index', [SkillController::class, 'storeSkills'])->name('store');
+    Route::get('/all-skills', [SkillController::class, 'allSlills'])->name('all');
+    Route::get('/edit-skill/{id}', [SkillController::class, 'editSlill'])->name('edit');
+    Route::put('/update-skill/{id}', [SkillController::class, 'updateSkill'])->name('update');
+    Route::get('/delete-skill/{id}', [SkillController::class, 'deleteSkill'])->name('delete');
 });
 
 

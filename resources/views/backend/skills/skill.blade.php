@@ -62,4 +62,20 @@
             </form>
         </div>
     </section>
+
+    @push('backend_js')
+        <script src="{{ asset('assets/js/sweetalert2@11.js') }}"></script>
+        <script>
+            @if(session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: '{{ session('success') }}',
+                    confirmButtonText: 'OK',
+                    timer: 2000
+
+                });
+            @endif
+        </script>
+    @endpush
 @endsection

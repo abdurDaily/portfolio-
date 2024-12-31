@@ -4,7 +4,7 @@
         <div class="container table-responsive">
             <div class="d-flex justify-content-between mb-3 align-items-center">
                 <span></span>
-                <a href="{{ route('backend.skill.store') }}" class="btn btn-primary">All Skill Record</a>
+                <a href="{{ route('backend.skill.store') }}" class="btn btn-primary">Add Skill </a>
             </div>
             <table class="table table-hover table-striped">
                 <tr>

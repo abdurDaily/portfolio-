@@ -12,7 +12,7 @@
                 <div class="row">
 
                     <div class="col-xl-4">
-                        <label for="year">Year</label>
+                        <label for="year">Year (for <b class="text-danger">institute</b> and <b class="text-danger">experience</b>)</label>
                         <input name="year" type="text" id="year" placeholder="year" class="form-control py-3"> <br>
                     </div>
 
@@ -56,7 +56,7 @@
 
 
                     <div class="col-12">
-                        <label for="details">Details</label>
+                        <label for="details">Details (for <b class="text-danger">institute</b> and <b class="text-danger">experience</b>)</label>
                         <textarea class="form-control " placeholder="details..." name="description" id="details" cols="30"
                             rows="10"></textarea>
                         <button class="btn btn-primary w-100 mt-3 py-3">submit</button>

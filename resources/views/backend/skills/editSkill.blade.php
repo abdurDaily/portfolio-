@@ -13,7 +13,7 @@
                 <div class="row">
 
                     <div class="col-xl-4">
-                        <label for="year">Year</label>
+                        <label for="year">Year (for <b class="text-danger">institute</b> and <b class="text-danger">experience</b>) </label>
                         <input value="{{ $editSkill->year }}" name="year" type="text" id="year" placeholder="year" class="form-control py-3"> <br>
                     </div>
 
@@ -44,8 +44,8 @@
                                 <select required name="type" id="type" class="py-3 form-control">
                                     <option selected disabled>select type</option>
                                     <option value="education" {{ $editSkill->type == 'education' ? 'selected' : '' }}>Education</option>
-                                    <option value="Experience" {{ $editSkill->type == 'Experience' ? 'selected' : '' }}>Experience</option>
-                                    <option value="Skill" {{ $editSkill->type == 'Skill' ? 'selected' : '' }}>Skill</option>
+                                    <option value="Experience" {{ $editSkill->type == 'experience' ? 'selected' : '' }}>Experience</option>
+                                    <option value="Skill" {{ $editSkill->type == 'skill' ? 'selected' : '' }}>Skill</option>
                                 </select>
                                 @error('type')
                                     <span class="text-danger">{{ $message }}</span>
@@ -57,7 +57,7 @@
 
 
                     <div class="col-12">
-                        <label for="details">Details</label>
+                        <label for="details">Details (for <b class="text-danger">institute</b> and <b class="text-danger">experience</b>)</label>
                         <textarea class="form-control " placeholder="details..." name="description" id="details" cols="30"
                             rows="10">{{ $editSkill->description }}
                         </textarea>

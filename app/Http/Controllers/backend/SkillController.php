@@ -45,6 +45,7 @@ public function allSlills() {
 
 public function editSlill($id) {
     $editSkill = Skill::find($id);
+    // dd($editSkill);
     return view('backend.skills.editSkill',compact('editSkill'));
 }
 
